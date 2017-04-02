@@ -15,8 +15,11 @@ search: true
 # Introduction
 
 This is API document for HOIPOS. Currently, there are three APIs which are listed out below:
+
 Get outlet list
+
 Get timing list
+
 Create reservation
 
 # HOI APIs
