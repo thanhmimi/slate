@@ -56,16 +56,16 @@ Get all available times.
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
+Parameter | Required | Type | Description
+--------- | -------- | ------- | -----------
 
 
 ### Body Parameters
-Parameter | Type | Description
---------- | ------- | -----------
-outlet_id | integer | TODO
-adult_pax | integer | TODO
-children_pax | integer | TODO
+Parameter | Required | Type | Description
+--------- | -------- | ------- | -----------
+outlet_id | true | integer | TODO
+adult_pax | true | integer | TODO
+children_pax | true | integer | TODO
 
 ## Create reservation
 
@@ -99,24 +99,24 @@ Create a reservation.
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ------- | -----------
+Parameter | Required | Type | Description
+--------- | -------- | ------- | -----------
 
 
 ### Body Parameters
-Parameter | Type | Description
---------- | ------- | -----------
-outlet_id | integer | TODO
-salutation | string | TODO
-first_name | string | TODO
-last_name | string | TODO
-email | string | TODO
-phone_country_code | integer | TODO
-phone | integer | TODO
-adult_pax | integer | TODO
-children_pax | integer | TODO
-reservation_timestamp | integer | TODO
-step | string | TODO
+Parameter | Required | Type | Description
+--------- | -------- | ------- | -----------
+outlet_id | true | integer | TODO
+salutation | false | string | TODO
+first_name | false | string | TODO
+last_name | false | string | TODO
+email | false | string | TODO
+phone_country_code | false | integer | TODO
+phone | false | integer | TODO
+adult_pax | true | integer | TODO
+children_pax | true | integer | TODO
+reservation_timestamp | false | integer | TODO
+step | false | string | TODO
 
 
 
