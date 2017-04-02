@@ -69,6 +69,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 ## Get timing list
 
+<!---
 ```ruby
 require 'kittn'
 
@@ -95,6 +96,7 @@ let api = kittn.authorize('meowmeowmeow');
 let kittens = api.kittens.get();
 ```
 curl "https://alfred.hoipos.com/laravel-reservation/"
+-->
 > Result format is JSON structure:
 
 ```json
