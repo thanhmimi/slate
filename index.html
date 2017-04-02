@@ -232,80 +232,9 @@ Get outlet list
 Get timing list
 Create reservation</p>
 
-<!---
-# Authentication
-
-> To authorize, use this code:
-
-&ldquo;`ruby
-require &lsquo;kittn&rsquo;
-
-api = Kittn::APIClient.authorize!(&lsquo;meowmeowmeow&rsquo;)
-&rdquo;`
-
-&ldquo;`python
-import kittn
-
-api = kittn.authorize(&lsquo;meowmeowmeow&rsquo;)
-&rdquo;`
-
-&ldquo;`shell
-# With shell, you can just pass the correct header with each request
-curl &quot;api_endpoint_here&rdquo;
-  -H &ldquo;Authorization: meowmeowmeow&rdquo;
-&ldquo;`
-
-&rdquo;`javascript
-const kittn = require(&lsquo;kittn&rsquo;);
-
-let api = kittn.authorize(&lsquo;meowmeowmeow&rsquo;);
-&ldquo;`
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-&ndash;>
-
 <h1 id="hoi-apis">HOI APIs</h1>
 
 <h2 id="get-timing-list">Get timing list</h2>
-
-<!---
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-curl "https://alfred.hoipos.com/laravel-reservation/"
--->
 
 <blockquote>
 <p>Result format is JSON structure:</p>
@@ -370,12 +299,6 @@ curl "https://alfred.hoipos.com/laravel-reservation/"
 <td>TODO</td>
 </tr>
 </tbody></table>
-
-<!---
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-&ndash;>
 
           <h1 id="errors">Errors</h1>
 
