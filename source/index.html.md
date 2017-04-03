@@ -26,7 +26,7 @@ or
 
 `POST https://alfred.hoipos.com/laravel-reservation/api/outlets`
 
-In POST case, we need specify which `action type` call
+In POST case, we need specify which `action type` called
 
 ### Query Parameters
 
@@ -89,42 +89,12 @@ type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
                 "license_key": null,
                 "modified_timestamp": "2015-08-02 23:00:00",
                 "created_timestamp": null
-            },
-            {
-                "id": 6,
-                "brand_id": 1,
-                "outlet_name": "Test Outlet (Duplication Test)",
-                "outlet_address": "101 HarbourFront Walk, #02-150\\nSingapore 098585\\nGST Reg No: 201510863E",
-                "outlet_receipt_footer": "Thank You\\nWe'd love to hear from you!\\nwww.caffebene.com.sg/feedback",
-                "outlet_logo": "",
-                "outlet_receipt_logo": "",
-                "outlet_receipt_footer_logo": null,
-                "flow_type": 0,
-                "enabled": 1,
-                "license_key": "BBCC",
-                "modified_timestamp": "2016-05-23 12:14:15",
-                "created_timestamp": "2016-05-23 12:14:15"
-            },
-            {
-                "id": 13,
-                "brand_id": 1,
-                "outlet_name": "Happy Dine",
-                "outlet_address": "15 Kent Ridge Drive, #01-03\nS 119245",
-                "outlet_receipt_footer": "Thank You",
-                "outlet_logo": "",
-                "outlet_receipt_logo": "",
-                "outlet_receipt_footer_logo": "",
-                "flow_type": 1,
-                "enabled": 1,
-                "license_key": "TLTE",
-                "modified_timestamp": "2016-10-29 01:14:22",
-                "created_timestamp": "2016-06-20 09:46:53"
             }
         ]
     }
 ```
 
-Fallback when fetch fail
+Fallback when action type not specify
 
 > Result format is JSON structure:
 
@@ -146,6 +116,7 @@ Search available time
 
 Parameter | Required | Type | Value | Description
 --------- | -------- | ------- | ------- | -----------
+
 
 ### Body Parameters
 Parameter | Required | Type | Value | Description
@@ -207,44 +178,14 @@ type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
                     "max_pax": 20,
                     "children_allowed": true
                 }
-            ],
-            "2017-04-06": [
-                {
-                    "time": "11:00",
-                    "session_type": 0,
-                    "session_name": "Lunch time",
-                    "first_arrival_time": "11:00:00",
-                    "interval_minutes": 30,
-                    "capacity_1": 1,
-                    "capacity_2": 1,
-                    "capacity_3_4": 1,
-                    "capacity_5_6": 1,
-                    "capacity_7_x": 1,
-                    "max_pax": 20,
-                    "children_allowed": true
-                },
-                {
-                    "time": "11:30",
-                    "session_type": 0,
-                    "session_name": "Lunch time",
-                    "first_arrival_time": "11:00:00",
-                    "interval_minutes": 30,
-                    "capacity_1": 1,
-                    "capacity_2": 1,
-                    "capacity_3_4": 1,
-                    "capacity_5_6": 1,
-                    "capacity_7_x": 1,
-                    "max_pax": 20,
-                    "children_allowed": true
-                }
             ]
         }
     }
 ```
 
-When no timing found
+When no timing found, response in same structure
 
-Response in same structure, with array of timing is empty []
+Array of timing is empty, []
 
 > Result format is JSON structure:
 
@@ -255,46 +196,46 @@ Response in same structure, with array of timing is empty []
         "data": {
             "2017-04-04": [],
             "2017-04-05": [],
-            "2017-04-06": [],
-            "2017-04-07": [],
-            "2017-04-08": [],
-            "2017-04-09": []
+            "2017-04-06": []
         }
     }
 ```
 
-###
+###Validate case
 
+Status code: 422
 
-Create reservation
+Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL
 
-# HOI APIs
-
-## Get timing list
+Reponse with error message inside data, for example
 
 > Result format is JSON structure:
 
 ```json
-{
-  "statusCode": 422,
-  "statusMsg": {
-    "outlet_id": [
-      "The outlet id field is required."
-    ],
-    "adult_pax": [
-      "The adult pax field is required."
-    ],
-    "children_pax": [
-      "The children pax field is required."
-    ]
-  },
-  "data": {
-    "------WebKitFormBoundaryjAkhtyTWbfsNcz6L\r\nContent-Disposition:_form-data;_name": "\"outlet_id\"\r\n\r\n1\r\n------WebKitFormBoundaryjAkhtyTWbfsNcz6L\r\nContent-Disposition: form-data; name=\"adult_pax\"\r\n\r\n1\r\n------WebKitFormBoundaryjAkhtyTWbfsNcz6L\r\nContent-Disposition: form-data; name=\"children_pax\"\r\n\r\n0\r\n------WebKitFormBoundaryjAkhtyTWbfsNcz6L--"
-  }
-}
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_BOOKING_CONDITION_VALIDATE_FAIL",
+        "data": {
+            "outlet_id": [
+                "The outlet id must be a number."
+            ]
+        }
+    }
 ```
 
-Get all available times.
+Fallback when action type not specify
+
+> Result format is JSON structure:
+
+```json
+    {
+      "statusCode": 200,
+      "statusMsg": "AJAX_UNKNOWN_CASE",
+      "data": []
+    }
+```
+
+Create a reservation
 
 ### HTTP Request
 
@@ -302,67 +243,154 @@ Get all available times.
 
 ### Query Parameters
 
-Parameter | Required | Type | Description
---------- | -------- | ------- | -----------
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
 
 
 ### Body Parameters
-Parameter | Required | Type | Description
---------- | -------- | ------- | -----------
-outlet_id | true | integer | TODO
-adult_pax | true | integer | TODO
-children_pax | true | integer | TODO
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+outlet_id | true | integer | | TODO
+salutation | true | string | | TODO
+first_name | true | string | | TODO
+last_name | true | string | | TODO
+email | true | string | | TODO
+phone_country_code | true | string | | TODO
+phone | true | string | | TODO
+adult_pax | true | integer | | TODO
+children_pax | true | integer | | TODO
+reservation_timestamp | true | string | 2017-08-30 20:00:00 | database timestamp format
+type | true | string | AJAX_SUBMIT_BOOKING | const action name to create reservation
 
-## Create reservation
+> Result format is JSON structure:
+
+Return the confirm_id of reservation
+
+```json
+    {
+      "statusCode": 200,
+      "statusMsg": "AJAX_RESERVATION_SUCCESS_CREATE",
+      "data": {
+        "confirm_id" : "GHSG675"
+      }
+    }    
+```
+
+###Validate fail
+
+Status code : 422
+
+Status msg : AJAX_RESERVATION_VALIDATE_FAIL
+
+Reponse with error message inside data, for example
 
 > Result format is JSON structure:
 
 ```json
-{
-  "statusCode": 422,
-  "statusMsg": {
-    "outlet_id": [
-      "The outlet id field is required."
-    ],
-    "adult_pax": [
-      "The adult pax field is required."
-    ],
-    "children_pax": [
-      "The children pax field is required."
-    ]
-  },
-  "data": {
-    "------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition:_form-data;_name": "\"outlet_id\"\r\n\r\n1\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"salutation\"\r\n\r\nMr.\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"first_name\"\r\n\r\nAnh\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"last_name\"\r\n\r\nLe Hoang\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"email\"\r\n\r\nlehoanganh25991@gmail.com\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"phone_country_code\"\r\n\r\n 84\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"phone\"\r\n\r\n903865657\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"adult_pax\"\r\n\r\n1\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"children_pax\"\r\n\r\n0\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"reservation_timestamp\"\r\n\r\n2017-03-30 20:00:00\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q\r\nContent-Disposition: form-data; name=\"step\"\r\n\r\nform-step-3\r\n------WebKitFormBoundarybFnjGV21oAxa8T1Q--"
-  }
-}
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_RESERVATION_VALIDATE_FAIL",
+        "data": {
+            "outlet_id": [
+                "The outlet id must be a number."
+            ]
+        }
+    }
 ```
 
-Create a reservation.
+Status code : 422
 
-### HTTP Request
+Status msg : AJAX_RESERVATION_VALIDATE_FAIL
 
-`POST https://alfred.hoipos.com/laravel-reservation/`
+Case happen when pax size = adult pax + children pax
 
-### Query Parameters
+Out of config pax range, example:
 
-Parameter | Required | Type | Description
---------- | -------- | ------- | -----------
+Only allow from 2 to 20
+
+> Result format is JSON structure:
+
+```json
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_RESERVATION_VALIDATE_FAIL",
+        "data": {
+            "pax": "total pax out of overall_range"
+        }
+    }
+```
+
+Status code : 422
+
+Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE
+
+Case happen when someone has submited booking 
+
+to create reservation before the current customer, whic lead to capacity be full
+
+> Result format is JSON structure:
+
+```json
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_RESERVATION_NO_LONGER_AVAILABLE",
+        "data": {}
+    }
+```
+
+Status code : 422
+
+Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT
+
+Case happen when total pax size pass the deposit require pax
+
+Customer must commit the payment, when payment made
+
+Reservation auto update it status as RESERVED
+
+Payment still not finished, status as DEPOSIT
+
+The reservation still make, return confirm id with deposit amount
+
+> Result format is JSON structure:
+
+```json
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_RESERVATION_REQUIRED_DEPOSIT",
+        "data": {
+            "confirm_id" : "AHGTY78",
+            "deposit" : 190
+        }
+    }
+```
+
+Fallback when action type not specify
+
+> Result format is JSON structure:
+
+```json
+    {
+      "statusCode": 200,
+      "statusMsg": "AJAX_UNKNOWN_CASE",
+      "data": []
+    }
+```
 
 
-### Body Parameters
-Parameter | Required | Type | Description
---------- | -------- | ------- | -----------
-outlet_id | true | integer | TODO
-salutation | false | string | TODO
-first_name | false | string | TODO
-last_name | false | string | TODO
-email | false | string | TODO
-phone_country_code | false | integer | TODO
-phone | false | integer | TODO
-adult_pax | true | integer | TODO
-children_pax | true | integer | TODO
-reservation_timestamp | false | integer | TODO
-step | false | string | TODO
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
