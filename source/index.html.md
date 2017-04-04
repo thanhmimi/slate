@@ -17,14 +17,18 @@ search: true
 This is API document for HOIPOS. Currently, there are three APIs which are listed out below:
 
 Get outlet list
+Search available time
+Create a reservation
 
+#APIs
+## Get outlet list 
 ### HTTP Request
 
-`GET https://alfred.hoipos.com/laravel-reservation/api/outlets`
+`GET https://alfred.hoipos.com/reservation/staging/api/outlets`
 
 or
 
-`POST https://alfred.hoipos.com/laravel-reservation/api/outlets`
+`POST https://alfred.hoipos.com/reservation/staging/api/outlets`
 
 In POST case, we need specify which `action type` called
 
@@ -106,8 +110,7 @@ Fallback when action type not specify
     }
 ```
 
-Search available time
-
+## Search available time
 ### HTTP Request
 
 `POST https://alfred.hoipos.com/laravel-reservation/`
@@ -201,7 +204,7 @@ Array of timing is empty, []
     }
 ```
 
-###Validate case
+### Validate case
 
 Status code: 422
 
@@ -235,7 +238,7 @@ Fallback when action type not specify
     }
 ```
 
-Create a reservation
+## Create a reservation
 
 ### HTTP Request
 
