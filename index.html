@@ -223,15 +223,21 @@
 
 <p>This is API document for HOIPOS. Currently, there are three APIs which are listed out below:</p>
 
-<p>Get outlet list</p>
+<p>Get outlet list
+Search available time
+Create a reservation</p>
+
+<h1 id="apis">APIs</h1>
+
+<h2 id="get-outlet-list">Get outlet list</h2>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://alfred.hoipos.com/laravel-reservation/api/outlets</code></p>
+<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
 
 <p>or</p>
 
-<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/api/outlets</code></p>
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
 
 <p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
 
@@ -334,7 +340,7 @@
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Search available time</p>
+<h2 id="search-available-time">Search available time</h2>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -499,7 +505,7 @@
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Create a reservation</p>
+<h2 id="create-a-reservation">Create a reservation</h2>
 
 <h3 id="http-request">HTTP Request</h3>
 
