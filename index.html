@@ -223,56 +223,15 @@
 
 <p>This is API document for HOIPOS. Currently, there are three APIs which are listed out below:</p>
 
-<p>Get outlet list
-Search available time
-Create a reservation</p>
+<p>Get outlet list</p>
+
+<p>Search available time</p>
+
+<p>Create a reservation</p>
 
 <h1 id="apis">APIs</h1>
 
 <h2 id="get-outlet-list">Get outlet list</h2>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
-
-<p>or</p>
-
-<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
-
-<p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="body-parameters">Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>AJAX_ALL_OUTLETS</td>
-<td>const action name to fetch outlets</td>
-</tr>
-</tbody></table>
 
 <blockquote>
 <p>Result format is JSON structure:</p>
@@ -329,10 +288,51 @@ Create a reservation</p>
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Fallback when action type not specify</p>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
+
+<p>or</p>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
+
+<p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_ALL_OUTLETS</td>
+<td>const action name to fetch outlets</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure as unknown case:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -340,8 +340,66 @@ Create a reservation</p>
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="fallback-when-action-type-not-specify-as-unknown-case">Fallback when action type not specify as unknown case</h3>
+
 <h2 id="search-available-time">Search available time</h2>
 
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:30"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
@@ -401,67 +459,7 @@ Create a reservation</p>
 </tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>When no timing found, response in same structure</p>
-
-<p>Array of timing is empty, []</p>
-
-<blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure as timing is empty:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -470,6 +468,25 @@ Create a reservation</p>
             </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"2017-04-06"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="when-no-timing-found-response-in-same-structure">When no timing found, response in same structure</h3>
+
+<p>Array of timing is empty, []</p>
+
+<p>Fallback when action type not specify</p>
+
+<blockquote>
+<p>Result format is JSON structure for condition validate failed:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_BOOKING_CONDITION_VALIDATE_FAIL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"The outlet id must be a number."</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -482,22 +499,7 @@ Create a reservation</p>
 <p>Reponse with error message inside data, for example</p>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_BOOKING_CONDITION_VALIDATE_FAIL"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="s2">"The outlet id must be a number."</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Fallback when action type not specify</p>
-
-<blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure as unknown case:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -505,114 +507,9 @@ Create a reservation</p>
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="fallback-when-action-type-not-specify-as-unknown-case">Fallback when action type not specify as unknown case</h3>
+
 <h2 id="create-a-reservation">Create a reservation</h2>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="body-parameters">Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>outlet_id</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>salutation</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>first_name</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>email</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>phone_country_code</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>phone</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>adult_pax</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>children_pax</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>reservation_timestamp</td>
-<td>true</td>
-<td>string</td>
-<td>2017-08-30 20:00:00</td>
-<td>database timestamp format</td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>AJAX_SUBMIT_BOOKING</td>
-<td>const action name to create reservation</td>
-</tr>
-</tbody></table>
 
 <blockquote>
 <p>Result format is JSON structure:</p>
@@ -723,6 +620,113 @@ Create a reservation</p>
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>outlet_id</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>salutation</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>email</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>phone_country_code</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>adult_pax</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>children_pax</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>reservation_timestamp</td>
+<td>true</td>
+<td>string</td>
+<td>2017-08-30 20:00:00</td>
+<td>database timestamp format</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_SUBMIT_BOOKING</td>
+<td>const action name to create reservation</td>
+</tr>
+</tbody></table>
+
           <h1 id="errors">Errors</h1>
 
 <p>The HOI APIs use the following error codes:</p>
@@ -734,48 +738,28 @@ Create a reservation</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>422</td>
+<td>AJAX_RESERVATION_REQUIRED_DEPOSIT</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>422</td>
+<td>AJAX_RESERVATION_NO_LONGER_AVAILABLE</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>422</td>
+<td>AJAX_RESERVATION_VALIDATE_FAIL</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>422</td>
+<td>AJAX_BOOKING_CONDITION_VALIDATE_FAIL</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>200</td>
+<td>AJAX_UNKNOWN_CASE</td>
 </tr>
 <tr>
 <td>500</td>
 <td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
 
