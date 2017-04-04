@@ -17,30 +17,14 @@ search: true
 This is API document for HOIPOS. Currently, there are three APIs which are listed out below:
 
 Get outlet list
+
 Search available time
+
 Create a reservation
 
 #APIs
+
 ## Get outlet list 
-### HTTP Request
-
-`GET https://alfred.hoipos.com/reservation/staging/api/outlets`
-
-or
-
-`POST https://alfred.hoipos.com/reservation/staging/api/outlets`
-
-In POST case, we need specify which `action type` called
-
-### Query Parameters
-
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-
-### Body Parameters
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
 
 > Result format is JSON structure:
 
@@ -98,9 +82,28 @@ type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
     }
 ```
 
-Fallback when action type not specify
+### HTTP Request
 
-> Result format is JSON structure:
+`GET https://alfred.hoipos.com/reservation/staging/api/outlets`
+
+or
+
+`POST https://alfred.hoipos.com/reservation/staging/api/outlets`
+
+In POST case, we need specify which `action type` called
+
+### Query Parameters
+
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+
+### Body Parameters
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
+
+
+> Result format is JSON structure as unknown case:
 
 ```json
     {
@@ -109,25 +112,9 @@ Fallback when action type not specify
       "data": []
     }
 ```
+### Fallback when action type not specify as unknown case
 
 ## Search available time
-### HTTP Request
-
-`POST https://alfred.hoipos.com/laravel-reservation/`
-
-### Query Parameters
-
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-
-
-### Body Parameters
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-outlet_id | true | integer |  | TODO
-adult_pax | true | integer |  | TODO
-children_pax | true | integer |  | TODO
-type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
 
 > Result format is JSON structure:
 
@@ -186,60 +173,6 @@ type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
     }
 ```
 
-When no timing found, response in same structure
-
-Array of timing is empty, []
-
-> Result format is JSON structure:
-
-```json
-    {
-        "statusCode": 200,
-        "statusMsg": "AJAX_AVAILABLE_TIME_FOUND",
-        "data": {
-            "2017-04-04": [],
-            "2017-04-05": [],
-            "2017-04-06": []
-        }
-    }
-```
-
-### Validate case
-
-Status code: 422
-
-Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL
-
-Reponse with error message inside data, for example
-
-> Result format is JSON structure:
-
-```json
-    {
-        "statusCode": 422,
-        "statusMsg": "AJAX_BOOKING_CONDITION_VALIDATE_FAIL",
-        "data": {
-            "outlet_id": [
-                "The outlet id must be a number."
-            ]
-        }
-    }
-```
-
-Fallback when action type not specify
-
-> Result format is JSON structure:
-
-```json
-    {
-      "statusCode": 200,
-      "statusMsg": "AJAX_UNKNOWN_CASE",
-      "data": []
-    }
-```
-
-## Create a reservation
-
 ### HTTP Request
 
 `POST https://alfred.hoipos.com/laravel-reservation/`
@@ -253,17 +186,65 @@ Parameter | Required | Type | Value | Description
 ### Body Parameters
 Parameter | Required | Type | Value | Description
 --------- | -------- | ------- | ------- | -----------
-outlet_id | true | integer | | TODO
-salutation | true | string | | TODO
-first_name | true | string | | TODO
-last_name | true | string | | TODO
-email | true | string | | TODO
-phone_country_code | true | string | | TODO
-phone | true | string | | TODO
-adult_pax | true | integer | | TODO
-children_pax | true | integer | | TODO
-reservation_timestamp | true | string | 2017-08-30 20:00:00 | database timestamp format
-type | true | string | AJAX_SUBMIT_BOOKING | const action name to create reservation
+outlet_id | true | integer |  | TODO
+adult_pax | true | integer |  | TODO
+children_pax | true | integer |  | TODO
+type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
+
+> Result format is JSON structure as timing is empty:
+
+```json
+    {
+        "statusCode": 200,
+        "statusMsg": "AJAX_AVAILABLE_TIME_FOUND",
+        "data": {
+            "2017-04-04": [],
+            "2017-04-05": [],
+            "2017-04-06": []
+        }
+    }
+```
+
+### When no timing found, response in same structure
+
+Array of timing is empty, []
+
+Fallback when action type not specify
+
+> Result format is JSON structure for condition validate failed:
+
+```json
+    {
+        "statusCode": 422,
+        "statusMsg": "AJAX_BOOKING_CONDITION_VALIDATE_FAIL",
+        "data": {
+            "outlet_id": [
+                "The outlet id must be a number."
+            ]
+        }
+    }
+```
+
+### Validate case
+
+Status code: 422
+
+Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL
+
+Reponse with error message inside data, for example
+
+> Result format is JSON structure as unknown case:
+
+```json
+    {
+      "statusCode": 200,
+      "statusMsg": "AJAX_UNKNOWN_CASE",
+      "data": []
+    }
+```
+### Fallback when action type not specify as unknown case
+
+## Create a reservation
 
 > Result format is JSON structure:
 
@@ -380,6 +361,30 @@ Fallback when action type not specify
     }
 ```
 
+### HTTP Request
+
+`POST https://alfred.hoipos.com/laravel-reservation/`
+
+### Query Parameters
+
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+
+
+### Body Parameters
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+outlet_id | true | integer | | TODO
+salutation | true | string | | TODO
+first_name | true | string | | TODO
+last_name | true | string | | TODO
+email | true | string | | TODO
+phone_country_code | true | string | | TODO
+phone | true | string | | TODO
+adult_pax | true | integer | | TODO
+children_pax | true | integer | | TODO
+reservation_timestamp | true | string | 2017-08-30 20:00:00 | database timestamp format
+type | true | string | AJAX_SUBMIT_BOOKING | const action name to create reservation
 
 
 
