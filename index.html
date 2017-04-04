@@ -225,40 +225,15 @@
 
 <p>Get outlet list</p>
 
-<p>Get timing list</p>
-
-<p>Create reservation</p>
-
-<h1 id="hoi-apis">HOI APIs</h1>
-
-<h2 id="get-timing-list">Get timing list</h2>
-
-<blockquote>
-<p>Result format is JSON structure:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The outlet id field is required."</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"adult_pax"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The adult pax field is required."</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"children_pax"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The children pax field is required."</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"------WebKitFormBoundaryjAkhtyTWbfsNcz6L</span><span class="se">\r\n</span><span class="s2">Content-Disposition:_form-data;_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">outlet_id</span><span class="se">\"\r\n\r\n</span><span class="s2">1</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundaryjAkhtyTWbfsNcz6L</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">adult_pax</span><span class="se">\"\r\n\r\n</span><span class="s2">1</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundaryjAkhtyTWbfsNcz6L</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">children_pax</span><span class="se">\"\r\n\r\n</span><span class="s2">0</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundaryjAkhtyTWbfsNcz6L--"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Get all available times.</p>
-
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
+<p><code class="prettyprint">GET https://alfred.hoipos.com/laravel-reservation/api/outlets</code></p>
+
+<p>or</p>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/api/outlets</code></p>
+
+<p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -267,6 +242,7 @@
 <th>Parameter</th>
 <th>Required</th>
 <th>Type</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -279,6 +255,112 @@
 <th>Parameter</th>
 <th>Required</th>
 <th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_ALL_OUTLETS</td>
+<td>const action name to fetch outlets</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HoiPOS Cafe (West)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#02-21/AB/C Great World City</span><span class="se">\\</span><span class="s2">n1 Kim Send Promenade</span><span class="se">\\</span><span class="s2">nSingapore, 237994</span><span class="se">\\</span><span class="s2">nTel No. 6732-3061</span><span class="se">\\</span><span class="s2">nGST No: 19-880070-D"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THANK YOU FOR SUPPORTING US</span><span class="se">\\</span><span class="s2">nHAVE A WONDERFUL DAY"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tunglok_logo"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tunglok_logo_receipt"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"flow_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"license_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aaa"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-02 23:00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HoiPOS Cafe (East)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No. 2 Orchard Turn</span><span class="se">\\</span><span class="s2">n#B2-51 Ion Orchard</span><span class="se">\\</span><span class="s2">nSingapore 238801"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THANK YOU FOR SUPPORTING US</span><span class="se">\\</span><span class="s2">nHAVE A WONDERFUL DAY"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"flow_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"license_key"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-02 23:00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HoiPOS Cafe (North)"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ang Mo Kio Ave. 3 #B2-26</span><span class="se">\\</span><span class="s2">nSingapore 569933</span><span class="se">\\</span><span class="s2">nTEL: 6453 2521/1976"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THANK YOU FOR SUPPORTING US</span><span class="se">\\</span><span class="s2">nHAVE A WONDERFUL DAY"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"outlet_receipt_footer_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"flow_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"license_key"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modified_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-02 23:00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Fallback when action type not specify</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_UNKNOWN_CASE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Search available time</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -286,46 +368,138 @@
 <td>outlet_id</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>adult_pax</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>children_pax</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_SEARCH_AVAILABLE_TIME</td>
+<td>const action name to search</td>
+</tr>
 </tbody></table>
-
-<h2 id="create-reservation">Create reservation</h2>
 
 <blockquote>
 <p>Result format is JSON structure:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The outlet id field is required."</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"adult_pax"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The adult pax field is required."</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"children_pax"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"The children pax field is required."</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition:_form-data;_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">outlet_id</span><span class="se">\"\r\n\r\n</span><span class="s2">1</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">salutation</span><span class="se">\"\r\n\r\n</span><span class="s2">Mr.</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">first_name</span><span class="se">\"\r\n\r\n</span><span class="s2">Anh</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">last_name</span><span class="se">\"\r\n\r\n</span><span class="s2">Le Hoang</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">email</span><span class="se">\"\r\n\r\n</span><span class="s2">lehoanganh25991@gmail.com</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">phone_country_code</span><span class="se">\"\r\n\r\n</span><span class="s2"> 84</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">phone</span><span class="se">\"\r\n\r\n</span><span class="s2">903865657</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">adult_pax</span><span class="se">\"\r\n\r\n</span><span class="s2">1</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">children_pax</span><span class="se">\"\r\n\r\n</span><span class="s2">0</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">reservation_timestamp</span><span class="se">\"\r\n\r\n</span><span class="s2">2017-03-30 20:00:00</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q</span><span class="se">\r\n</span><span class="s2">Content-Disposition: form-data; name=</span><span class="se">\"</span><span class="s2">step</span><span class="se">\"\r\n\r\n</span><span class="s2">form-step-3</span><span class="se">\r\n</span><span class="s2">------WebKitFormBoundarybFnjGV21oAxa8T1Q--"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:30"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Create a reservation.</p>
+<p>When no timing found, response in same structure</p>
+
+<p>Array of timing is empty, []</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"2017-04-06"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="validate-case">Validate case</h3>
+
+<p>Status code: 422</p>
+
+<p>Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL</p>
+
+<p>Reponse with error message inside data, for example</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_BOOKING_CONDITION_VALIDATE_FAIL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"The outlet id must be a number."</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Fallback when action type not specify</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_UNKNOWN_CASE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Create a reservation</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -338,6 +512,7 @@
 <th>Parameter</th>
 <th>Required</th>
 <th>Type</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -350,6 +525,7 @@
 <th>Parameter</th>
 <th>Required</th>
 <th>Type</th>
+<th>Value</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -357,70 +533,190 @@
 <td>outlet_id</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>salutation</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>first_name</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>last_name</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>email</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>phone_country_code</td>
-<td>false</td>
-<td>integer</td>
+<td>true</td>
+<td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>phone</td>
-<td>false</td>
-<td>integer</td>
+<td>true</td>
+<td>string</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>adult_pax</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>children_pax</td>
 <td>true</td>
 <td>integer</td>
+<td></td>
 <td>TODO</td>
 </tr>
 <tr>
 <td>reservation_timestamp</td>
-<td>false</td>
-<td>integer</td>
-<td>TODO</td>
+<td>true</td>
+<td>string</td>
+<td>2017-08-30 20:00:00</td>
+<td>database timestamp format</td>
 </tr>
 <tr>
-<td>step</td>
-<td>false</td>
+<td>type</td>
+<td>true</td>
 <td>string</td>
-<td>TODO</td>
+<td>AJAX_SUBMIT_BOOKING</td>
+<td>const action name to create reservation</td>
 </tr>
 </tbody></table>
 
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+
+<p>Return the confirm_id of reservation</p>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_RESERVATION_SUCCESS_CREATE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"confirm_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"GHSG675"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">    
+</span></code></pre>
+<h3 id="validate-fail">Validate fail</h3>
+
+<p>Status code : 422</p>
+
+<p>Status msg : AJAX_RESERVATION_VALIDATE_FAIL</p>
+
+<p>Reponse with error message inside data, for example</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_RESERVATION_VALIDATE_FAIL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"outlet_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"The outlet id must be a number."</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status code : 422</p>
+
+<p>Status msg : AJAX_RESERVATION_VALIDATE_FAIL</p>
+
+<p>Case happen when pax size = adult pax + children pax</p>
+
+<p>Out of config pax range, example:</p>
+
+<p>Only allow from 2 to 20</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_RESERVATION_VALIDATE_FAIL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"pax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"total pax out of overall_range"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status code : 422</p>
+
+<p>Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE</p>
+
+<p>Case happen when someone has submited booking </p>
+
+<p>to create reservation before the current customer, whic lead to capacity be full</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_RESERVATION_NO_LONGER_AVAILABLE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Status code : 422</p>
+
+<p>Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT</p>
+
+<p>Case happen when total pax size pass the deposit require pax</p>
+
+<p>Customer must commit the payment, when payment made</p>
+
+<p>Reservation auto update it status as RESERVED</p>
+
+<p>Payment still not finished, status as DEPOSIT</p>
+
+<p>The reservation still make, return confirm id with deposit amount</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_RESERVATION_REQUIRED_DEPOSIT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"confirm_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AHGTY78"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"deposit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">190</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Fallback when action type not specify</p>
+
+<blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_UNKNOWN_CASE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
           <h1 id="errors">Errors</h1>
 
 <p>The HOI APIs use the following error codes:</p>
