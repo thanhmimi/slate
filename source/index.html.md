@@ -26,6 +26,26 @@ Create a reservation
 
 ## Get outlet list 
 
+### HTTP Request
+
+`GET https://alfred.hoipos.com/reservation/dev/api/outlets`
+
+or
+
+`POST https://alfred.hoipos.com/reservation/dev/api/outlets`
+
+In POST case, we need specify which `action type` called
+
+### Query Parameters
+
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+
+### Body Parameters
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
+
 > Result format is JSON structure:
 
 ```json
@@ -82,28 +102,14 @@ Create a reservation
     }
 ```
 
-### HTTP Request
+### Fallback when action type not specify
+_|
+--- | --- |
+Status code: 422|
+Status message: AJAX_UNKNOWN_CASE|
+Server not support your action call|
 
-`GET https://alfred.hoipos.com/reservation/dev/api/outlets`
-
-or
-
-`POST https://alfred.hoipos.com/reservation/dev/api/outlets`
-
-In POST case, we need specify which `action type` called
-
-### Query Parameters
-
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-
-### Body Parameters
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
-
-
-> Result format is JSON structure as unknown case:
+> Result format is JSON structure for fallback case:
 
 ```json
     {
@@ -112,9 +118,26 @@ type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
       "data": []
     }
 ```
-### Fallback when action type not specify as unknown case
 
 ## Search available time
+
+### HTTP Request
+
+`POST https://alfred.hoipos.com/reservation/dev/api`
+
+### Query Parameters
+
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+
+
+### Body Parameters
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+outlet_id | true | integer |  | TODO
+adult_pax | true | integer |  | TODO
+children_pax | true | integer |  | TODO
+type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
 
 > Result format is JSON structure:
 
@@ -173,23 +196,11 @@ type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
     }
 ```
 
-### HTTP Request
+### When no timing found, response in same structure
 
-`POST https://alfred.hoipos.com/reservation/dev/api`
+Array of timing is empty, []
 
-### Query Parameters
-
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-
-
-### Body Parameters
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-outlet_id | true | integer |  | TODO
-adult_pax | true | integer |  | TODO
-children_pax | true | integer |  | TODO
-type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
+Fallback when action type not specify
 
 > Result format is JSON structure as timing is empty:
 
@@ -205,11 +216,13 @@ type | true | string | AJAX_SEARCH_AVAILABLE_TIME | const action name to search
     }
 ```
 
-### When no timing found, response in same structure
+### Validate fail
 
-Array of timing is empty, []
-
-Fallback when action type not specify
+Params submitted not follow type of format required|
+---|---|
+Status code: 422|
+Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL|
+Reponse with error message inside data, for example|
 
 > Result format is JSON structure for condition validate failed:
 
@@ -225,17 +238,14 @@ Fallback when action type not specify
     }
 ```
 
-### Validate case
+### Fallback when action type not specify
+_|
+--- | --- |
+Status code: 422|
+Status message: AJAX_UNKNOWN_CASE|
+Server not support your action call|
 
-Status code: 422
-
-Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL
-
-Reponse with error message inside data, for example
-
-### Fallback when action type not specify as __unknown case__
-
-> Result format is JSON structure as unknown case:
+> Result format is JSON structure for fallback case:
 
 ```json
     {
@@ -243,10 +253,34 @@ Reponse with error message inside data, for example
       "statusMsg": "AJAX_UNKNOWN_CASE",
       "data": []
     }
+```}
 ```
 
-
 ## Create a reservation
+
+### HTTP Request
+
+`POST https://alfred.hoipos.com/reservation/dev/api`
+
+### Query Parameters
+
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+
+### Body Parameters
+Parameter | Required | Type | Value | Description
+--------- | -------- | ------- | ------- | -----------
+outlet_id | true | integer | | TODO
+salutation | true | string | | TODO
+first_name | true | string | | TODO
+last_name | true | string | | TODO
+email | true | string | | TODO
+phone_country_code | true | string | | TODO
+phone | true | string | | TODO
+adult_pax | true | integer | | TODO
+children_pax | true | integer | | TODO
+reservation_timestamp | true | string | 2017-08-30 20:00:00 | database timestamp format
+type | true | string | AJAX_SUBMIT_BOOKING | const action name to create reservation
 
 > Result format is JSON structure:
 
@@ -262,14 +296,12 @@ Return the confirm_id of reservation
     }    
 ```
 
-###ERROR CASE
-
 ###Validate fail
 
 Params submit not follow type or format required|
 --- | --- |
 Status code : 422|
-Status msg : AJAX_RESERVATION_VALIDATE_FAIL|
+Status message : AJAX_RESERVATION_VALIDATE_FAIL|
 Reponse with error message inside res.data|
 
 > Result format is JSON structure for validate fail:
@@ -291,7 +323,7 @@ Reponse with error message inside res.data|
 Type & format as expect, but total pax out of overall config|
 --------- | -------- |
 Status code : 422|
-Status msg : AJAX_RESERVATION_VALIDATE_FAIL|
+Status message : AJAX_RESERVATION_VALIDATE_FAIL|
 Case happen when pax size = adult pax + children pax Out of config pax range, example: Only allow from 2 to 20|
 
 > Result format is JSON structure for pax out of range:
@@ -311,7 +343,7 @@ Case happen when pax size = adult pax + children pax Out of config pax range, ex
 Someone has occupied the slot|
 --- | --- |
 Status code : 422|
-Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE|
+Status message : AJAX_RESERVATION_NO_LONGER_AVAILABLE|
 Everything is fine, but bcs of delay when booking, someone has submited booking to create reservation before the current customer|
 
 > Result format is JSON structure for no longer available:
@@ -329,7 +361,7 @@ Everything is fine, but bcs of delay when booking, someone has submited booking 
 Payment for deposit is required|
 --- | --- |
 Status code : 422|
-Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT|
+Status message : AJAX_RESERVATION_REQUIRED_DEPOSIT|
 Customer with large number of pax, deposit payment is required|
 
 Ask customer to complete the payment with paypal
@@ -349,11 +381,10 @@ Base on deposit amount
     }
 ```
 ### Fallback when action type not specify
-
 _|
 --- | --- |
 Status code: 422|
-Status msg: AJAX_UNKNOWN_CASE|
+Status message: AJAX_UNKNOWN_CASE|
 Server not support your action call|
 
 > Result format is JSON structure for fallback case:
