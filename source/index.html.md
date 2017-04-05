@@ -84,11 +84,11 @@ Create a reservation
 
 ### HTTP Request
 
-`GET https://alfred.hoipos.com/reservation/staging/api/outlets`
+`GET https://alfred.hoipos.com/reservation/dev/api/outlets`
 
 or
 
-`POST https://alfred.hoipos.com/reservation/staging/api/outlets`
+`POST https://alfred.hoipos.com/reservation/dev/api/outlets`
 
 In POST case, we need specify which `action type` called
 
@@ -175,7 +175,7 @@ type | true | string | AJAX_ALL_OUTLETS | const action name to fetch outlets
 
 ### HTTP Request
 
-`POST https://alfred.hoipos.com/laravel-reservation/`
+`POST https://alfred.hoipos.com/reservation/dev/api`
 
 ### Query Parameters
 
@@ -360,31 +360,6 @@ Fallback when action type not specify
       "data": []
     }
 ```
-
-### HTTP Request
-
-`POST https://alfred.hoipos.com/laravel-reservation/`
-
-### Query Parameters
-
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-
-
-### Body Parameters
-Parameter | Required | Type | Value | Description
---------- | -------- | ------- | ------- | -----------
-outlet_id | true | integer | | TODO
-salutation | true | string | | TODO
-first_name | true | string | | TODO
-last_name | true | string | | TODO
-email | true | string | | TODO
-phone_country_code | true | string | | TODO
-phone | true | string | | TODO
-adult_pax | true | integer | | TODO
-children_pax | true | integer | | TODO
-reservation_timestamp | true | string | 2017-08-30 20:00:00 | database timestamp format
-type | true | string | AJAX_SUBMIT_BOOKING | const action name to create reservation
 
 
 
