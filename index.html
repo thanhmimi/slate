@@ -290,11 +290,11 @@
 </span></code></pre>
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
+<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
 
 <p>or</p>
 
-<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/staging/api/outlets</code></p>
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
 
 <p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
 
@@ -402,7 +402,7 @@
 </span></code></pre>
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -620,113 +620,6 @@
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://alfred.hoipos.com/laravel-reservation/</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="body-parameters">Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>outlet_id</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>salutation</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>first_name</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>last_name</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>email</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>phone_country_code</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>phone</td>
-<td>true</td>
-<td>string</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>adult_pax</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>children_pax</td>
-<td>true</td>
-<td>integer</td>
-<td></td>
-<td>TODO</td>
-</tr>
-<tr>
-<td>reservation_timestamp</td>
-<td>true</td>
-<td>string</td>
-<td>2017-08-30 20:00:00</td>
-<td>database timestamp format</td>
-</tr>
-<tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>AJAX_SUBMIT_BOOKING</td>
-<td>const action name to create reservation</td>
-</tr>
-</tbody></table>
-
           <h1 id="errors">Errors</h1>
 
 <p>The HOI APIs use the following error codes:</p>
