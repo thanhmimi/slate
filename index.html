@@ -233,6 +233,49 @@
 
 <h2 id="get-outlet-list">Get outlet list</h2>
 
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
+
+<p>or</p>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
+
+<p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_ALL_OUTLETS</td>
+<td>const action name to fetch outlets</td>
+</tr>
+</tbody></table>
+
 <blockquote>
 <p>Result format is JSON structure:</p>
 </blockquote>
@@ -288,51 +331,26 @@
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
-
-<p>or</p>
-
-<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api/outlets</code></p>
-
-<p>In POST case, we need specify which <code class="prettyprint">action type</code> called</p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="fallback-when-action-type-not-specify">Fallback when action type not specify</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="body-parameters">Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Value</th>
-<th>Description</th>
+<th>_</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>type</td>
-<td>true</td>
-<td>string</td>
-<td>AJAX_ALL_OUTLETS</td>
-<td>const action name to fetch outlets</td>
+<td>Status code: 422</td>
+</tr>
+<tr>
+<td>Status message: AJAX_UNKNOWN_CASE</td>
+</tr>
+<tr>
+<td>Server not support your action call</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure as unknown case:</p>
+<p>Result format is JSON structure for fallback case:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -340,66 +358,8 @@
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="fallback-when-action-type-not-specify-as-unknown-case">Fallback when action type not specify as unknown case</h3>
-
 <h2 id="search-available-time">Search available time</h2>
 
-<blockquote>
-<p>Result format is JSON structure:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre>
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api</code></p>
@@ -459,6 +419,68 @@
 </tbody></table>
 
 <blockquote>
+<p>Result format is JSON structure:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_AVAILABLE_TIME_FOUND"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"2017-04-04"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"2017-04-05"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:30"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"session_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lunch time"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"first_arrival_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11:00:00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"interval_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_1"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_2"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_3_4"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_5_6"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"capacity_7_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"max_pax"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"children_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="when-no-timing-found-response-in-same-structure">When no timing found, response in same structure</h3>
+
+<p>Array of timing is empty, []</p>
+
+<p>Fallback when action type not specify</p>
+
+<blockquote>
 <p>Result format is JSON structure as timing is empty:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
@@ -471,11 +493,23 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="when-no-timing-found-response-in-same-structure">When no timing found, response in same structure</h3>
+<h3 id="validate-fail">Validate fail</h3>
 
-<p>Array of timing is empty, []</p>
-
-<p>Fallback when action type not specify</p>
+<table><thead>
+<tr>
+<th>Params submitted not follow type of format required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code: 422</td>
+</tr>
+<tr>
+<td>Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL</td>
+</tr>
+<tr>
+<td>Reponse with error message inside data, for example</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Result format is JSON structure for condition validate failed:</p>
@@ -490,26 +524,142 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="validate-case">Validate case</h3>
+<h3 id="fallback-when-action-type-not-specify">Fallback when action type not specify</h3>
 
-<p>Status code: 422</p>
-
-<p>Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL</p>
-
-<p>Reponse with error message inside data, for example</p>
+<table><thead>
+<tr>
+<th>_</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code: 422</td>
+</tr>
+<tr>
+<td>Status message: AJAX_UNKNOWN_CASE</td>
+</tr>
+<tr>
+<td>Server not support your action call</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure as unknown case:</p>
+<p>Result format is JSON structure for fallback case:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
       </span><span class="s2">"statusMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AJAX_UNKNOWN_CASE"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="err">```</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="fallback-when-action-type-not-specify-as-unknown-case">Fallback when action type not specify as unknown case</h3>
-
 <h2 id="create-a-reservation">Create a reservation</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://alfred.hoipos.com/reservation/dev/api</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="body-parameters">Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>outlet_id</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>salutation</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>email</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>phone_country_code</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>true</td>
+<td>string</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>adult_pax</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>children_pax</td>
+<td>true</td>
+<td>integer</td>
+<td></td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>reservation_timestamp</td>
+<td>true</td>
+<td>string</td>
+<td>2017-08-30 20:00:00</td>
+<td>database timestamp format</td>
+</tr>
+<tr>
+<td>type</td>
+<td>true</td>
+<td>string</td>
+<td>AJAX_SUBMIT_BOOKING</td>
+<td>const action name to create reservation</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Result format is JSON structure:</p>
@@ -526,14 +676,24 @@
 </span></code></pre>
 <h3 id="validate-fail">Validate fail</h3>
 
-<p>Status code : 422</p>
-
-<p>Status msg : AJAX_RESERVATION_VALIDATE_FAIL</p>
-
-<p>Reponse with error message inside data, for example</p>
+<table><thead>
+<tr>
+<th>Params submit not follow type or format required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code : 422</td>
+</tr>
+<tr>
+<td>Status message : AJAX_RESERVATION_VALIDATE_FAIL</td>
+</tr>
+<tr>
+<td>Reponse with error message inside res.data</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure for validate fail:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
@@ -545,18 +705,26 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Status code : 422</p>
+<h3 id="total-pax-out-of-range">Total pax out of range</h3>
 
-<p>Status msg : AJAX_RESERVATION_VALIDATE_FAIL</p>
-
-<p>Case happen when pax size = adult pax + children pax</p>
-
-<p>Out of config pax range, example:</p>
-
-<p>Only allow from 2 to 20</p>
+<table><thead>
+<tr>
+<th>Type &amp; format as expect, but total pax out of overall config</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code : 422</td>
+</tr>
+<tr>
+<td>Status message : AJAX_RESERVATION_VALIDATE_FAIL</td>
+</tr>
+<tr>
+<td>Case happen when pax size = adult pax + children pax Out of config pax range, example: Only allow from 2 to 20</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure for pax out of range:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
@@ -566,16 +734,26 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Status code : 422</p>
+<h3 id="no-longer-available">No longer available</h3>
 
-<p>Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE</p>
-
-<p>Case happen when someone has submited booking </p>
-
-<p>to create reservation before the current customer, whic lead to capacity be full</p>
+<table><thead>
+<tr>
+<th>Someone has occupied the slot</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code : 422</td>
+</tr>
+<tr>
+<td>Status message : AJAX_RESERVATION_NO_LONGER_AVAILABLE</td>
+</tr>
+<tr>
+<td>Everything is fine, but bcs of delay when booking, someone has submited booking to create reservation before the current customer</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure for no longer available:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
@@ -583,22 +761,30 @@
         </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Status code : 422</p>
+<h3 id="reservation-require-deposit">Reservation require deposit</h3>
 
-<p>Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT</p>
+<table><thead>
+<tr>
+<th>Payment for deposit is required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code : 422</td>
+</tr>
+<tr>
+<td>Status message : AJAX_RESERVATION_REQUIRED_DEPOSIT</td>
+</tr>
+<tr>
+<td>Customer with large number of pax, deposit payment is required</td>
+</tr>
+</tbody></table>
 
-<p>Case happen when total pax size pass the deposit require pax</p>
+<p>Ask customer to complete the payment with paypal</p>
 
-<p>Customer must commit the payment, when payment made</p>
-
-<p>Reservation auto update it status as RESERVED</p>
-
-<p>Payment still not finished, status as DEPOSIT</p>
-
-<p>The reservation still make, return confirm id with deposit amount</p>
+<p>Base on deposit amount</p>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure for require deposit:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
         </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">422</span><span class="p">,</span><span class="w">
@@ -609,10 +795,26 @@
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Fallback when action type not specify</p>
+<h3 id="fallback-when-action-type-not-specify">Fallback when action type not specify</h3>
+
+<table><thead>
+<tr>
+<th>_</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Status code: 422</td>
+</tr>
+<tr>
+<td>Status message: AJAX_UNKNOWN_CASE</td>
+</tr>
+<tr>
+<td>Server not support your action call</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>Result format is JSON structure:</p>
+<p>Result format is JSON structure for fallback case:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
