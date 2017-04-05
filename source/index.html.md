@@ -233,6 +233,8 @@ Status message: AJAX_BOOKING_CONDITION_VALIDATE_FAIL
 
 Reponse with error message inside data, for example
 
+### Fallback when action type not specify as __unknown case__
+
 > Result format is JSON structure as unknown case:
 
 ```json
@@ -242,7 +244,7 @@ Reponse with error message inside data, for example
       "data": []
     }
 ```
-### Fallback when action type not specify as unknown case
+
 
 ## Create a reservation
 
@@ -260,15 +262,17 @@ Return the confirm_id of reservation
     }    
 ```
 
+###ERROR CASE
+
 ###Validate fail
 
-Status code : 422
+Params submit not follow type or format required|
+--- | --- |
+Status code : 422|
+Status msg : AJAX_RESERVATION_VALIDATE_FAIL|
+Reponse with error message inside res.data|
 
-Status msg : AJAX_RESERVATION_VALIDATE_FAIL
-
-Reponse with error message inside data, for example
-
-> Result format is JSON structure:
+> Result format is JSON structure for validate fail:
 
 ```json
     {
@@ -282,17 +286,15 @@ Reponse with error message inside data, for example
     }
 ```
 
-Status code : 422
+###Total pax out of range
 
-Status msg : AJAX_RESERVATION_VALIDATE_FAIL
+Type & format as expect, but total pax out of overall config|
+--------- | -------- |
+Status code : 422|
+Status msg : AJAX_RESERVATION_VALIDATE_FAIL|
+Case happen when pax size = adult pax + children pax Out of config pax range, example: Only allow from 2 to 20|
 
-Case happen when pax size = adult pax + children pax
-
-Out of config pax range, example:
-
-Only allow from 2 to 20
-
-> Result format is JSON structure:
+> Result format is JSON structure for pax out of range:
 
 ```json
     {
@@ -304,15 +306,15 @@ Only allow from 2 to 20
     }
 ```
 
-Status code : 422
+###No longer available
 
-Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE
+Someone has occupied the slot|
+--- | --- |
+Status code : 422|
+Status msg : AJAX_RESERVATION_NO_LONGER_AVAILABLE|
+Everything is fine, but bcs of delay when booking, someone has submited booking to create reservation before the current customer|
 
-Case happen when someone has submited booking 
-
-to create reservation before the current customer, whic lead to capacity be full
-
-> Result format is JSON structure:
+> Result format is JSON structure for no longer available:
 
 ```json
     {
@@ -322,21 +324,19 @@ to create reservation before the current customer, whic lead to capacity be full
     }
 ```
 
-Status code : 422
+###Reservation require deposit
 
-Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT
+Payment for deposit is required|
+--- | --- |
+Status code : 422|
+Status msg : AJAX_RESERVATION_REQUIRED_DEPOSIT|
+Customer with large number of pax, deposit payment is required|
 
-Case happen when total pax size pass the deposit require pax
+Ask customer to complete the payment with paypal
 
-Customer must commit the payment, when payment made
+Base on deposit amount
 
-Reservation auto update it status as RESERVED
-
-Payment still not finished, status as DEPOSIT
-
-The reservation still make, return confirm id with deposit amount
-
-> Result format is JSON structure:
+> Result format is JSON structure for require deposit:
 
 ```json
     {
@@ -348,10 +348,15 @@ The reservation still make, return confirm id with deposit amount
         }
     }
 ```
+### Fallback when action type not specify
 
-Fallback when action type not specify
+_|
+--- | --- |
+Status code: 422|
+Status msg: AJAX_UNKNOWN_CASE|
+Server not support your action call|
 
-> Result format is JSON structure:
+> Result format is JSON structure for fallback case:
 
 ```json
     {
@@ -360,6 +365,9 @@ Fallback when action type not specify
       "data": []
     }
 ```
+
+
+
 
 
 
